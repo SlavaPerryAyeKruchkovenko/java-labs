@@ -1,12 +1,6 @@
 package com.company;
 
 public class None extends Operation {
-
-    @Override
-    public String getName() {
-        return "none";
-    }
-
     @Override
     public int getPriority() {
         return 0;
@@ -19,6 +13,10 @@ public class None extends Operation {
 
     @Override
     public boolean equals(Operation opp) {
-        return opp.getName() == getName() && opp.getPriority() == getPriority();
+        return opp.toString() == toString() && opp.getPriority() == getPriority();
+    }
+    @Override
+    public String toString() {
+        return "";
     }
 }

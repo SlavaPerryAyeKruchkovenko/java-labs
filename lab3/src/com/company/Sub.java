@@ -3,11 +3,6 @@ package com.company;
 public class Sub extends Operation {
 
     @Override
-    public String getName() {
-        return "sud";
-    }
-
-    @Override
     public int getPriority() {
         return 1;
     }
@@ -20,6 +15,10 @@ public class Sub extends Operation {
     @Override
     public boolean equals(Operation opp) {
 
-        return opp.getName() == getName() && opp.getPriority() == getPriority();
+        return opp.toString() == toString() && opp.getPriority() == getPriority();
+    }
+    @Override
+    public String toString() {
+        return "-";
     }
 }

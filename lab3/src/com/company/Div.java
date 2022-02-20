@@ -1,12 +1,6 @@
 package com.company;
 
 public class Div extends Operation {
-
-    @Override
-    public String getName() {
-        return "div";
-    }
-
     @Override
     public int getPriority() {
         return 2;
@@ -20,6 +14,10 @@ public class Div extends Operation {
     @Override
     public boolean equals(Operation opp) {
 
-        return opp.getName() == getName() && opp.getPriority() == getPriority();
+        return opp.toString() == toString() && opp.getPriority() == getPriority();
+    }
+    @Override
+    public String toString() {
+        return "/";
     }
 }
