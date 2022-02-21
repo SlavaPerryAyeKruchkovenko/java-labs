@@ -67,7 +67,7 @@ public class map {
         try{
             Point point = new Point(index1,index2);
             LinkedList<Point> list = findPath(point,visited);
-            if(!list.isEmpty()){
+            if(!list.isEmpty() && !map[index1][index2].equals(new finish())){
                 list.addFirst(point);
             }
             return list;
