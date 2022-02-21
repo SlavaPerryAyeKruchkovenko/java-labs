@@ -1,6 +1,6 @@
-package com.company;
+package com.operation;
 
-public class Mul extends Operation {
+public class mul extends operation {
     @Override
     public int getPriority() {
         return 2;
@@ -12,7 +12,7 @@ public class Mul extends Operation {
     }
 
     @Override
-    public boolean equals(Operation opp) {
+    public boolean equals(operation opp) {
         return opp.toString() == toString() && opp.getPriority() == getPriority();
     }
     @Override

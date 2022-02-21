@@ -1,5 +1,7 @@
 package com.company;
 import java.util.*;
+import com.calculator.*;
+import com.operation.*;
 
 public class Main {
 
@@ -28,61 +30,46 @@ public class Main {
      * @param res num is result of expression
      */
     public static Iterable<String> FindExpression(int[] arr, int res){
-        List<Operation> ops = new ArrayList<>();
+        List<operation> ops = new ArrayList<>();
         for(int i = 0; i < arr.length - 1; i++){
-            ops.add(new None());
+            ops.add(new none());
         }
-        return FindExpression(arr,res,0,ops.toArray(new Operation[arr.length - 1]),new ArrayList<>());
+        return FindExpression(arr,res,0,ops.toArray(new operation[arr.length - 1]),new ArrayList<>());
     }
 
-    private static Iterable<String> FindExpression(int[] arr, int res,int index, Operation[] operationPull,
+    private static Iterable<String> FindExpression(int[] arr, int res,int index, operation[] operationPull,
                                                    List<String> expressions){
-        Operation[] operations = new Operation[]{new None(),new Mul(),new Sub(),new Div(),new Add()};
+        operation[] operations = new operation[]{new none(),new add(),new sub(),new mul(),new div()};
         if(index == arr.length){
             return null;
         }
         try {
-            for (Operation operation : operations) {
+            for (operation operation : operations) {
                 operationPull[index] = operation;
-                int result = calc(arr,operationPull);
+                String exp = pullToString(arr,operationPull);
+                double result = calculator.calc(exp);
                 if(result == res){
-                    expressions.add(pullToString(arr,operationPull,res));
+                    expressions.add(exp+String.format(" = %s", res));
                 }
                 FindExpression(arr,res,index+1,operationPull,expressions);
             }
 
         }catch (Exception ex){
-            System.out.println(index);
+            //System.out.println(index);
         }
         return expressions;
     }
-    private static int calc(int[] arr,Operation[] pull) throws Exception {
-        Stack<Integer> stack = new Stack<>();
-        for (Integer num : arr) {
-            stack.push(num);
-        }
-        if(arr.length - pull.length < 1){
-            throw new Exception("incorrect pull");
-        }
-        else{
-            for (Operation operation : pull) {
-                int num1 = stack.pop();
-                int num2 = stack.pop();
-                int res = (int)operation.calculate(num1,num2);
-                stack.push(res);
-            }
-            return stack.pop();
-        }
-    }
-    private static String pullToString(int[] arr,Operation[] pull,int res){
+    /**
+     * @param arr an array of nums in which to place the signs
+     * @param pull an array of operations which was placed
+     */
+    private static String pullToString(int[] arr,operation[] pull){
         StringBuilder builder = new StringBuilder();
         for(int i = 0; i < arr.length - 1; i++){
             builder.append(arr[i]);
             builder.append(pull[i].toString());
         }
         builder.append(arr[arr.length-1]);
-        builder.append("=");
-        builder.append(res);
         return builder.toString();
     }
 }

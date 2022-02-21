@@ -1,6 +1,6 @@
-package com.company;
+package com.operation;
 
-public class None extends Operation {
+public class none extends operation {
     @Override
     public int getPriority() {
         return 0;
@@ -8,11 +8,11 @@ public class None extends Operation {
 
     @Override
     public double calculate(double num1, double num2) {
-        return num1 * Math.pow(10, String.valueOf(num2).length()) + num2;
+        return num1 * Math.pow(10, String.valueOf((int)num2).length()) + num2;
     }
 
     @Override
-    public boolean equals(Operation opp) {
+    public boolean equals(operation opp) {
         return opp.toString() == toString() && opp.getPriority() == getPriority();
     }
     @Override
