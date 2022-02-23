@@ -28,6 +28,7 @@ public class Main {
     public static void main(String[] args){
 
         try {
+
             String path = new File("").getAbsolutePath()+"\\assets\\example.txt";
             String content = new String(Files.readAllBytes(Paths.get(path)));
             String[][] arr = Arrays.stream(content.split("\n"))
