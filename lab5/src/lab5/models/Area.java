@@ -1,8 +1,10 @@
 package lab5.models;
 
 public class Area {
-    private final Field[] fields = new Field[4];
-
+    private final Field[] fields;
+    public Area(){
+        this.fields = new Field[]{new Field(),new Field(),new Field(),new Field()};
+    }
     public Field getField(int index) {
         if(index >= 0 && index < 4)
             return this.fields[index];

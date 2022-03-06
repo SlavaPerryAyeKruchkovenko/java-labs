@@ -12,6 +12,6 @@ public class Ball {
     public String toString () {
         if(state == BallColor.Black) return "B";
         else if(state == BallColor.White) return "W";
-        else return "";
+        else return " ";
     }
 }
