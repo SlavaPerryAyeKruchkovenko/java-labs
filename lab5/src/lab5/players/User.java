@@ -1,4 +1,4 @@
 package lab5.players;
 
-public class User extends Player{
+public class User extends Player {
 }

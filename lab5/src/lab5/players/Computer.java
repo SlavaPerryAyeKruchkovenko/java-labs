@@ -1,4 +1,4 @@
 package lab5.players;
 
-public class Computer extends Player{
+public class Computer extends Player {
 }
