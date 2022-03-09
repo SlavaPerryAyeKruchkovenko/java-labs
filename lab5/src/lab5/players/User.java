@@ -1,6 +1,5 @@
 package lab5.players;
 
-import lab5.drawers.IGameDrawer;
 import lab5.models.Area;
 import lab5.models.Ball;
 import lab5.models.Field;
@@ -8,20 +7,20 @@ import lab5.service.BallColor;
 import lab5.service.Direction;
 import lab5.service.Point;
 
-import java.util.Random;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class User extends Player {
 
     @Override
-    Field selectField(Area area) {
+    public Field selectField(Area area) {
         Scanner scanner = new Scanner(System.in);
         int index = scanner.nextInt();
         return area.getField(index);
     }
 
     @Override
-    Point selectPosition(Field field) {
+    public Point selectPosition(Field field) {
         Scanner scanner = new Scanner(System.in);
         String line = scanner.nextLine();
         String[] point = line.split(";");
@@ -29,23 +28,23 @@ public class User extends Player {
     }
 
     @Override
-    Ball selectBall() {
+    public Ball selectBall() {
         Scanner scanner = new Scanner(System.in);
-        String color = scanner.nextLine();
-        if(color == "black" || color == "b")
+        String color = scanner.nextLine().toLowerCase(Locale.ROOT).trim();
+        if(color.equals("black") || color.equals("b"))
             return new Ball(BallColor.Black);
-        else if(color == "white" || color == "w")
+        else if(color.equals("white") || color.equals("w"))
             return new Ball(BallColor.White);
         throw new RuntimeException("inccorect color");
     }
 
     @Override
-    Direction selectDirection() {
+    public Direction selectDirection() {
         Scanner scanner = new Scanner(System.in);
         String color = scanner.nextLine();
-        if(color == "left" || color == "left")
+        if(color.equals("left") || color.equals("l"))
             return Direction.Left;
-        else if(color == "white" || color == "w")
+        else if(color.equals("right") || color.equals("r"))
             return Direction.Right;
         throw new RuntimeException("inccorect direction");
     }

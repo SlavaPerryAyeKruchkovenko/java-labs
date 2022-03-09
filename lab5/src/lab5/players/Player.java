@@ -6,8 +6,8 @@ import lab5.service.Direction;
 import lab5.service.Point;
 
 public abstract class Player {
-    abstract Field selectField(Area area);
-    abstract Point selectPosition(Field field);
-    abstract Ball selectBall();
-    abstract Direction selectDirection();
+    public abstract Field selectField(Area area);
+    public abstract Point selectPosition(Field field);
+    public abstract Ball selectBall();
+    public abstract Direction selectDirection();
 }

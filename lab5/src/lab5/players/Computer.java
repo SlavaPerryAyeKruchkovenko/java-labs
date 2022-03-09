@@ -13,7 +13,7 @@ import java.util.Random;
 public class Computer extends Player {
 
     @Override
-    Field selectField(Area area) {
+    public Field selectField(Area area) {
         int counter = 0;
         while(true){
             counter++;
@@ -21,7 +21,7 @@ public class Computer extends Player {
             int index = rnd.nextInt(4);
             Field field = area.getField(index);
             if(counter == 100){
-                throw new RuntimeException("field are whole");
+                throw new RuntimeException("fields are whole");
             }
             if(!field.isWhole()){
                 return field;
@@ -30,7 +30,7 @@ public class Computer extends Player {
     }
 
     @Override
-    Point selectPosition(Field field) {
+    public Point selectPosition(Field field) {
         for (int i = 0; i<3; i++)
             for (int j = 0; j<3; j++)
                 if(field.getBall(i,j)==null)
@@ -40,7 +40,7 @@ public class Computer extends Player {
     }
 
     @Override
-    Ball selectBall() {
+    public Ball selectBall() {
         Random rnd = new Random();
         int index = rnd.nextInt(2);
         if(index == 0)
@@ -50,7 +50,7 @@ public class Computer extends Player {
     }
 
     @Override
-    Direction selectDirection() {
+    public Direction selectDirection() {
         Random rnd = new Random();
         int index = rnd.nextInt(2);
         if(index == 0)
