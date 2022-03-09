@@ -4,7 +4,9 @@ import lab5.models.Area;
 import lab5.models.Ball;
 
 public interface IGameDrawer {
-    void PrintTable(Area area);
+    void printTable(Area area);
 
-    void PrintBall(Ball ball);
+    void printBall(Ball ball);
+
+    void printMessage(String message);
 }

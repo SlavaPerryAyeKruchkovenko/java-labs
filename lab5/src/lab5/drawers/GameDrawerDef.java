@@ -7,7 +7,7 @@ import lab5.service.BallColor;
 
 public class GameDrawerDef implements IGameDrawer {
     @Override
-    public void PrintTable(Area area) {
+    public void printTable(Area area) {
         for (int i = 0; i < area.FieldCount; i++) {
             Field field = area.getField(i);
             i++;
@@ -21,11 +21,11 @@ public class GameDrawerDef implements IGameDrawer {
     }
     private void printLineOfField(Field field,int j){
         for (int k = 0; k < field.size.width; k++) {
-            PrintBall(field.getBall(j, k));
+            printBall(field.getBall(j, k));
         }
     }
     @Override
-    public void PrintBall(Ball ball) {
+    public void printBall(Ball ball) {
         if(ball != null) {
             if(ball.state == BallColor.White)
                 System.out.print("x");
@@ -35,5 +35,10 @@ public class GameDrawerDef implements IGameDrawer {
         else{
             System.out.print("*");
         }
+    }
+
+    @Override
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 }
