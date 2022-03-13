@@ -23,8 +23,8 @@ public class Area {
     public boolean isDraw(){return Arrays.stream(fields).allMatch(Field::isWhole);}
 
     private boolean isSideWin(BallColor color){
-        return isDiagonalWin(color,new Field[]{fields[0],fields[2]},0) ||
-                isDiagonalWin(color,new Field[]{fields[1],fields[3]},fields[1].size.width-1) ||
+        return  isDiagonalWin(color,new Field[]{fields[0],fields[3]},0) ||
+                isDiagonalWin(color,new Field[]{fields[1],fields[2]},fields[1].size.width-1) ||
                 checkVertical(color) || checkHorizontal(color);
     }
     private boolean isDiagonalWin(BallColor color,Field[] fields,int offset){
@@ -40,9 +40,18 @@ public class Area {
     }
     private boolean checkVertical(BallColor color){
         for (int i = 0; i < 3; i++){
-            if(isLineWin(color,new Field[]{fields[0],fields[1]},i,true))
+            if(isLineWin(color,new Field[]{fields[0],fields[2]},i,true))
                 return true;
-            if(isLineWin(color,new Field[]{fields[2],fields[3]},i,true))
+            if(isLineWin(color,new Field[]{fields[1],fields[3]},i,true))
+                return true;
+        }
+        return false;
+    }
+    private boolean checkHorizontal(BallColor color){
+        for (int i = 0; i < 3; i++){
+            if(isLineWin(color,new Field[]{fields[0],fields[1]},i,false))
+                return true;
+            if(isLineWin(color,new Field[]{fields[2],fields[3]},i,false))
                 return true;
         }
         return false;
@@ -58,14 +67,6 @@ public class Area {
         }
         return true;
     }
-    private boolean checkHorizontal(BallColor color){
-        for (int i = 0; i < 3; i++){
-            if(isLineWin(color,new Field[]{fields[0],fields[1]},i,false))
-                return true;
-            if(isLineWin(color,new Field[]{fields[2],fields[3]},i,false))
-                return true;
-        }
-        return false;
-    }
+
 
 }

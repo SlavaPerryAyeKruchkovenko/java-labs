@@ -37,13 +37,13 @@ public class Field {
     public void rotateField(Direction direction) throws Exception {
         int size = this.field.length;
         Ball[][] newBalls = new Ball[3][3];
-        if (direction == Direction.Left) {
+        if (direction == Direction.Right) {
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     newBalls[i][j] = this.field[size - j - 1][i];
                 }
             }
-        } else if (direction == Direction.Right) {
+        } else if (direction == Direction.Left) {
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     newBalls[i][j] = this.field[j][size - i - 1];

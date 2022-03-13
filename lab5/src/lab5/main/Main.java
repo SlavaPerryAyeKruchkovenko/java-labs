@@ -31,6 +31,7 @@ public class Main {
             System.out.println("draw");
         }
         catch (Exception ex){
+            drawer.printTable(area);
             System.out.println(ex.getMessage());
         }
     }
@@ -75,7 +76,7 @@ public class Main {
         if(area.isWhiteWin()){
             throw new Exception("White is win");
         }
-        if(area.isBlackWin()){
+        else if(area.isBlackWin()){
             throw new Exception("Black is win");
         }
     }

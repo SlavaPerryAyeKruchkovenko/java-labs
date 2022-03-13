@@ -8,9 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab5/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab5/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lab5/models/Area.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab5/models/Area.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab5/models/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab5/models/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab5/players/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab5/players/Computer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lab5/players/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab5/players/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lab5/models/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lab5/models/Field.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +87,7 @@
       <workItem from="1646587283847" duration="2621000" />
       <workItem from="1646801697894" duration="2655000" />
       <workItem from="1646805333591" duration="6897000" />
-      <workItem from="1647154578405" duration="6448000" />
+      <workItem from="1647154578405" duration="7814000" />
     </task>
     <servers />
   </component>
