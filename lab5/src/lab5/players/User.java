@@ -29,13 +29,7 @@ public class User extends Player {
 
     @Override
     public Ball selectBall() {
-        Scanner scanner = new Scanner(System.in);
-        String color = scanner.nextLine().toLowerCase(Locale.ROOT).trim();
-        if(color.equals("black") || color.equals("b"))
-            return new Ball(BallColor.Black);
-        else if(color.equals("white") || color.equals("w"))
-            return new Ball(BallColor.White);
-        throw new RuntimeException("inccorect color");
+        return new Ball(BallColor.White);
     }
 
     @Override

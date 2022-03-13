@@ -21,50 +21,90 @@ public class Main {
         Area area = new Area();
         Player player2 = new Computer();
         Player player1 = new User();
+
         IGameDrawer drawer = new GameDrawerWithFrame();
-        while(true){
-
-            drawer.printTable(area);
-            Function<Area,Field> func1 = (area1) -> player1.selectField(area1);
-            Field field = MakeCmd(area,drawer,"Введите номер подполя",func1);
-
-            Function<Area,Point> func2 = (area1) -> player1.selectPosition(field);
-            Point point = MakeCmd(area,drawer,"Введите позицию через ; например 1;1",func2);
-
-            Function<Area,Ball> func3 = (area1) -> player1.selectBall();
-            Ball ball = MakeCmd(area,drawer,"Введите цвет",func3);
-
-            field.addBall(point.x, point.y,ball);
-
-            while(true){
-                try{
-                    Function<Area,Direction> func4 = (area1) -> player1.selectDirection();
-                    Direction direction = MakeCmd(area,drawer,"Введите направление",func4);
-                    field.rotateField(direction);
-                    break;
-                }
-                catch (Exception ex){
-                    drawer.printMessage(ex.getMessage());
-                }
+        try{
+            while(!area.isDraw()){
+                humanMakeSteep(drawer,area,player1);
+                computerMakeSteep(drawer,area,player2);
             }
+            System.out.println("draw");
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    private static void humanMakeSteep(IGameDrawer drawer,Area area,Player player) throws Exception {
+        Field field;
+        Point point;
+        Ball ball;
+        while(true){
+            try{
+                drawer.printTable(area);
+                Function<Area,Field> func1 = player::selectField;
+                field = MakeCmd(area,drawer,"Введите номер подполя",func1);
 
-            Field field2 = player2.selectField(area);
-            point = player2.selectPosition(field2);
-            ball = player2.selectBall();
-            field.addBall(point.x, point.y,ball);
+                Field finalField = field;
+                Function<Area,Point> func2 = (area1) -> player.selectPosition(finalField);
+                point = MakeCmd(area,drawer,"Введите позицию через ; например 1;1",func2);
 
-            while(true){
-                try{
-                    Direction direction = player2.selectDirection();
-                    field.rotateField(direction);
-                    break;
-                }
-                catch (Exception ex){
-                    drawer.printMessage(ex.getMessage());
-                }
+                ball = player.selectBall();
+
+                field.addBall(point.x, point.y,ball);
+
+                break;
+            }catch (Exception ex){
+                drawer.printMessage(ex.getMessage());
             }
         }
-
+        checkOnWin(area);
+        while(true){
+            try{
+                Function<Area,Direction> func4 = (area1) -> player.selectDirection();
+                Direction direction = MakeCmd(area,drawer,"Введите направление",func4);
+                field.rotateField(direction);
+                break;
+            }
+            catch (Exception ex){
+                drawer.printMessage(ex.getMessage());
+            }
+        }
+        checkOnWin(area);
+    }
+    private static void checkOnWin(Area area) throws Exception {
+        if(area.isWhiteWin()){
+            throw new Exception("White is win");
+        }
+        if(area.isBlackWin()){
+            throw new Exception("Black is win");
+        }
+    }
+    private static void computerMakeSteep(IGameDrawer drawer,Area area,Player player) throws Exception {
+        Field field;
+        Point point;
+        Ball ball;
+        while(true){
+            try{
+                field = player.selectField(area);
+                point = player.selectPosition(field);
+                ball = player.selectBall();
+                field.addBall(point.x, point.y,ball);
+                break;
+            }
+            catch (Exception ex){}
+        }
+        checkOnWin(area);
+        while(true){
+            try{
+                Direction direction = player.selectDirection();
+                field.rotateField(direction);
+                break;
+            }
+            catch (Exception ex){
+                drawer.printMessage(ex.getMessage());
+            }
+        }
+        checkOnWin(area);
     }
     private static<T> T MakeCmd(Area area, IGameDrawer drawer, String message, Function<Area,T> func){
         while(true){

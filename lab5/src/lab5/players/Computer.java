@@ -41,12 +41,7 @@ public class Computer extends Player {
 
     @Override
     public Ball selectBall() {
-        Random rnd = new Random();
-        int index = rnd.nextInt(2);
-        if(index == 0)
-            return new Ball(BallColor.White);
-        else
-            return new Ball(BallColor.Black);
+        return new Ball(BallColor.Black);
     }
 
     @Override

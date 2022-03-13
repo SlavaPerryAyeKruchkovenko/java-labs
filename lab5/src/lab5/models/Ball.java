@@ -13,4 +13,8 @@ public class Ball {
         else if (state == BallColor.White) return "W";
         else return " ";
     }
+    @Override
+    public boolean equals(Object obj){
+        return obj instanceof Ball && ((Ball)obj).state == this.state;
+    }
 }
