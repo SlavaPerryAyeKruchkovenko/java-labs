@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] arg){
-        int res = Integer.decode("50");
-        System.out.println(res);
+        int val = Integer.MAX_VALUE*2;
+        Integer.decode("java");
+        System.out.println(Integer.compare(val,22));
     }
 }

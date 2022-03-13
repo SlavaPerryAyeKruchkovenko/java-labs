@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13def9bd-3239-4369-952b-007c9a524401" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/IntegerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab12.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/IntegerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +57,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IntegerTest.signMinusTest">
+  <component name="RunManager" selected="JUnit.IntegerTest.decodeArr">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="lab12" />
@@ -71,41 +65,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IntegerTest.decodeEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntegerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="lab12" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="IntegerTest" />
-      <option name="METHOD_NAME" value="decodeEmpty" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IntegerTest.decode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab12" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="IntegerTest" />
+      <option name="METHOD_NAME" value="decode" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IntegerTest.signMinusTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntegerTest.decodeArr" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="lab12" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="IntegerTest" />
-      <option name="METHOD_NAME" value="signMinusTest(int)" />
+      <option name="METHOD_NAME" value="decodeArr" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IntegerTest.signPlusTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntegerTest.decodeTrash" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="lab12" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="IntegerTest" />
-      <option name="METHOD_NAME" value="signPlusTest(int)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="IntegerTest.signTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="lab12" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="IntegerTest" />
-      <option name="METHOD_NAME" value="signTest(int)" />
+      <option name="METHOD_NAME" value="decodeTrash(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -113,11 +106,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.IntegerTest.signMinusTest" />
-        <item itemvalue="JUnit.IntegerTest.signPlusTest" />
-        <item itemvalue="JUnit.IntegerTest.signTest" />
-        <item itemvalue="JUnit.IntegerTest.decodeEmpty" />
+        <item itemvalue="JUnit.IntegerTest.decodeArr" />
+        <item itemvalue="JUnit.IntegerTest.decodeTrash" />
+        <item itemvalue="JUnit.IntegerTest.decode" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.IntegerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -130,6 +123,7 @@
       <option name="presentableId" value="Default" />
       <updated>1647167166489</updated>
       <workItem from="1647167168569" duration="2168000" />
+      <workItem from="1647176999228" duration="8475000" />
     </task>
     <servers />
   </component>
