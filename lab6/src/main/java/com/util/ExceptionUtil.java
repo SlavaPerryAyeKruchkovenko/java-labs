@@ -21,10 +21,16 @@ public class ExceptionUtil {
      */
     private static List<Throwable> splitByHierarchy(Throwable ex) {
         List<Throwable> exs = new ArrayList<>();
-        while (ex != null) {
-            exs.add(ex);
-            ex = ex.getCause();
+        if(ex != null){
+            for(Throwable throwable : ex.getSuppressed()){
+                exs.add(throwable);
+            }
+            while (ex != null) {
+                exs.add(ex);
+                ex = ex.getCause();
+            }
         }
+
         return exs;
     }
     private static void appendStackTrace(Throwable t, StackTraceElement[] elements) {
