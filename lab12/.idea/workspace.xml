@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="13def9bd-3239-4369-952b-007c9a524401" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IntegerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab5/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +40,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -57,14 +57,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IntegerTest.decodeArr">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="lab12" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.IntegerTest">
     <configuration name="IntegerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="lab12" />
       <option name="PACKAGE_NAME" value="" />
@@ -94,6 +87,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="IntegerTest.decodeEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab12" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="IntegerTest" />
+      <option name="METHOD_NAME" value="decodeEmpty" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="IntegerTest.decodeTrash" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="lab12" />
       <option name="PACKAGE_NAME" value="" />
@@ -106,11 +109,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.IntegerTest" />
+        <item itemvalue="JUnit.IntegerTest.decodeEmpty" />
         <item itemvalue="JUnit.IntegerTest.decodeArr" />
         <item itemvalue="JUnit.IntegerTest.decodeTrash" />
         <item itemvalue="JUnit.IntegerTest.decode" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.IntegerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -124,6 +127,10 @@
       <updated>1647167166489</updated>
       <workItem from="1647167168569" duration="2168000" />
       <workItem from="1647176999228" duration="8475000" />
+      <workItem from="1648011247418" duration="383000" />
+      <workItem from="1648011681750" duration="49000" />
+      <workItem from="1648012671631" duration="228000" />
+      <workItem from="1648384170325" duration="72000" />
     </task>
     <servers />
   </component>
@@ -140,5 +147,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/lab12$IntegerTest.ic" NAME="IntegerTest Coverage Results" MODIFIED="1648012790100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
