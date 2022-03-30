@@ -8,6 +8,7 @@ import static com.extensions.ListExtensions.concat;
 
 public class ExceptionUtil {
     public static Throwable merge(Throwable ex, StackTraceElement[] stackTrace) {
+        changeOnBasic(stackTrace);
         for (Throwable throwable : splitByHierarchy(ex))
             appendStackTrace(throwable, stackTrace);
         return ex;
@@ -33,7 +34,16 @@ public class ExceptionUtil {
 
         return exs;
     }
-
+    private static void changeOnBasic(StackTraceElement[] elements){
+        for (int i = 0; i< elements.length; i++){
+            if(elements[i].getMethodName().equals("getStackTrace")){
+                String[] classNames = elements[i].getClassName().split("\\.");
+                String className = classNames[classNames.length-1];
+                StackTraceElement element = new StackTraceElement('<'+className,"start>","",-1);
+                elements[i] = element;
+            }
+        }
+    }
     private static void appendStackTrace(Throwable t, StackTraceElement[] elements) {
         List<StackTraceElement> traceElements = new ArrayList<>();
         if (t != null) {
