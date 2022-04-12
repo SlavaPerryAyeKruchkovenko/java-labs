@@ -1,6 +1,7 @@
 import messenger.Messenger;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
@@ -42,7 +43,7 @@ public class Main {
                             if (channel != null) {
                                 clients.add(channel);
                                 channel.configureBlocking(false);
-                                channel.write(ByteBuffer.wrap("input>".getBytes(StandardCharsets.UTF_8)));
+                                channel.write(ByteBuffer.wrap("input>".getBytes(StandardCharsets.UTF_16LE)));
                                 channel.register(selector, SelectionKey.OP_READ);
                             }
                         } else {
@@ -69,15 +70,15 @@ public class Main {
 
                                 }
                                 while (true);
-                                String text = builder.toString().toLowerCase(Locale.ROOT);
+                                String text = builder.toString();
 
-                                if (text.equals("exit")) {
+                                if (text.toString().toLowerCase(Locale.ROOT).equals("exit")) {
 
                                     channel.close();
                                     clients.remove(channel);
                                     break;
                                 }
-                                text = rumSomething(text) + ("input> ");
+                                text = runTask(text) + ("input> ");
                                 byte[] res = text.getBytes(StandardCharsets.UTF_8);
                                 buffer = buffer.wrap(res);
                                 channel.write(buffer);
@@ -109,36 +110,39 @@ public class Main {
         return result;
     }
 
-    private static String rumSomething(String text) {
-        String result = null;
-        if (text.isEmpty())
-            return result;
-        String[] arr = Arrays.stream(text.split(" "))
-                .map(String::trim)
-                .filter(x-> !x.equals(""))
-                .toArray(String[]::new);
+    private static String runTask(String text) {
+        if(!text.isEmpty()){
+            String result;
+            String[] arr = Arrays.stream(text.split(" "))
+                    .map(String::trim)
+                    .filter(x-> !x.equals(""))
+                    .toArray(String[]::new);
+            String dir = System.getProperty("user.dir");
+            ProcessBuilder builder = new ProcessBuilder()
+                    .command(arr)
+                    .directory(new File(dir))
+                    .redirectOutput(ProcessBuilder.Redirect.PIPE);
 
-        ProcessBuilder builder = new ProcessBuilder()
-                .command(arr)
-                .redirectOutput(ProcessBuilder.Redirect.PIPE);
-        try {
-            Process process = builder.start();
-            if (!process.waitFor(10, TimeUnit.SECONDS)) {
-                process.destroy();
-                result = "timeout";
-                return result + "\r\n";
+            try {
+                Process process = builder.start();
+                if (!process.waitFor(10, TimeUnit.SECONDS)) {
+                    process.destroy();
+                    return "timeout" + "\r\n";
+                }
+
+                BufferedReader inReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                BufferedReader erReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+                result = inReader.lines().collect(Collectors.joining("\r\n"));
+                String error= erReader.lines().collect(Collectors.joining("\r\n"));
+                result = error.isEmpty() ? result : error;
+            } catch (IOException e) {
+                result = "unknown command";
+            } catch (Exception e) {
+                result = "error";
             }
-            BufferedReader inReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            BufferedReader erReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            String inResult = inReader.lines().collect(Collectors.joining("\n"));
-            String erResult = erReader.lines().collect(Collectors.joining("\n"));
-            result = !erResult.isEmpty() ? erResult : inResult;
-        } catch (IOException e) {
-            result = "unknown command";
-        } catch (Exception e) {
-            result = "error";
+            return result + "\r\n";
         }
-        return result + "\r\n";
+        return null;
     }
 
 }
