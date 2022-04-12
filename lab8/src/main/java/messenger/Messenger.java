@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Messenger {
     public void execute(int delay, Runnable task) {
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
         executor.scheduleAtFixedRate(task, 0, delay, TimeUnit.MILLISECONDS);
     }
 }
