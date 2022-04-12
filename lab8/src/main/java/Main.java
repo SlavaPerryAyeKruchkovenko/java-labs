@@ -11,7 +11,9 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -33,7 +35,7 @@ public class Main {
             haveConnect = true;
             while (haveConnect) {
                 int users = selector.select();
-                if (users != 0) {
+                if (users != 0 || selector.selectedKeys().size() != 0) {
                     for (SelectionKey key : selector.selectedKeys()) {
                         SocketChannel channel = socket.accept();
                         if (key.channel().equals(socket)) {
@@ -58,22 +60,25 @@ public class Main {
                                             if (arr.length > 0)
                                                 builder.append(arr[0]);
                                             break;
-                                        } else if (text.length() > 0) {
+                                        }
+                                        else if (text.length() > 0 && !text.equals("\n")) {
                                             builder.append(text);
                                         }
-                                        System.out.println(builder);
+
                                     }
 
                                 }
                                 while (true);
-                                String text = builder.toString();
+                                String text = builder.toString().toLowerCase(Locale.ROOT);
+
                                 if (text.equals("exit")) {
 
                                     channel.close();
                                     clients.remove(channel);
                                     break;
                                 }
-                                byte[] res = rumSomething(text).concat("\ninput> ").getBytes(StandardCharsets.UTF_8);
+                                text = rumSomething(text) + ("input> ");
+                                byte[] res = text.getBytes(StandardCharsets.UTF_8);
                                 buffer = buffer.wrap(res);
                                 channel.write(buffer);
                                 buffer.clear();
@@ -90,7 +95,7 @@ public class Main {
 
     private static boolean haveEnd(byte[] arr) {
         for (byte el : arr) {
-            if (el == '\r' || el == '\n')
+            if (el == '\r')
                 return true;
         }
         return false;
@@ -108,16 +113,20 @@ public class Main {
         String result = null;
         if (text.isEmpty())
             return result;
-        text = text.replace("\r", "").replace("\n", "");
+        String[] arr = Arrays.stream(text.split(" "))
+                .map(String::trim)
+                .filter(x-> !x.equals(""))
+                .toArray(String[]::new);
+
         ProcessBuilder builder = new ProcessBuilder()
-                .command(text.split(" "))
+                .command(arr)
                 .redirectOutput(ProcessBuilder.Redirect.PIPE);
         try {
             Process process = builder.start();
             if (!process.waitFor(10, TimeUnit.SECONDS)) {
                 process.destroy();
                 result = "timeout";
-                return result + "\n\n";
+                return result + "\r\n";
             }
             BufferedReader inReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             BufferedReader erReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
@@ -129,8 +138,7 @@ public class Main {
         } catch (Exception e) {
             result = "error";
         }
-        result += "\n\n";
-        return result;
+        return result + "\r\n";
     }
 
 }
