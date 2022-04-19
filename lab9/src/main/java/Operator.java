@@ -1,9 +1,6 @@
 import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -13,8 +10,6 @@ import java.util.stream.Collectors;
 public class Operator<C extends Collection<T>,T> {
     private final C collection;
 
-    /*Class<C> clazz = collection.getClass();
-        this.collection = clazz.newInstance();*/
     private Operator(C collection){
         if(collection != null)
             this.collection = collection;
@@ -44,12 +39,12 @@ public class Operator<C extends Collection<T>,T> {
         return new Operator<>(this.collection);
     }
 
-    public Operator<C,T> sort(Comparator<T> comparator){
-        //Todo make sort of collection
-        /*this.collection = this.collection.stream()
-                .sorted(comparator)
-                .collect(Collectors
-                        .toCollection(C::new));*/
+    public Operator<C,T> sort(Comparator<? super T> comparator){
+        ArrayList<T> newCollection = new ArrayList<>();
+
+        this.collection.stream().sorted(comparator).forEach(newCollection::add);
+        this.collection.clear();
+        this.collection.addAll(newCollection);
         return new Operator<>(this.collection);
     }
     public Operator<C,T> remove(Predicate<? super T> predicate){
