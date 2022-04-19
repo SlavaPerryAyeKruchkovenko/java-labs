@@ -52,7 +52,7 @@ public class Operator<C extends Collection<T>,T> {
         return new Operator<>(this.collection);
     }
 
-    public Operator<C, T> copyTo(Supplier<C> supplier){
+    public <NewC extends Collection<T>>Operator<NewC, T> copyTo(Supplier<NewC> supplier){
         return new Operator<>(this.collection.stream().collect(Collectors.toCollection(supplier)));
     }
 
