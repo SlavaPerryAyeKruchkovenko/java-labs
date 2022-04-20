@@ -5,10 +5,28 @@ public class Result {
     private Range fileRange;
     private String text;
 
-    public Result(String fileName, int start, int finish, String text){
+    public Result(String fileName){
         this.fileName = fileName;
-        this.fileRange = new Range(start,finish);
-        this.text = text;
+    }
 
+    public Range getFileRange() {
+        return fileRange;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setText(String text) {
+        if(text != null)
+            this.text = text;
+    }
+
+    public void setFileRange(int start,int finish) {
+        this.fileRange = new Range(start,finish);
     }
 }

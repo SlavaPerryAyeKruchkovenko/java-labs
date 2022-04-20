@@ -5,16 +5,25 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args){
-        System.out.println("i am gay");
         Map<String,String> texts = getTexts(new File("assets"));
-        System.out.println("input data");
-        Scanner scanner = new Scanner(System.in);
-        String str = scanner.nextLine();
+        //System.out.println("input data");
+        //Scanner scanner = new Scanner(System.in);
+        //String str = scanner.nextLine();
+        String str = "Lorem";
         Map<String,Set<Result>> index = getIndex(str);
-        System.out.println(index);
+
+        Map<String, Set<Result>> map = add(index,texts);
+
     }
     public static Map<String, Set<Result>> add(Map<String, Set<Result>> index, Map<String, String> texts) {
-        return null;
+        index.forEach(
+                (val,res)->texts.forEach(
+                        (name,text) -> Arrays.stream(text.split("\n"))
+                                .filter(x->x.toLowerCase(Locale.ROOT).contains(val))
+                                .forEach(y->res = )
+                )
+        );
+        return index;
     }
     private static Map<String,Set<Result>> getIndex(String str){
         Map<String,Set<Result>> index = new HashMap<>();
