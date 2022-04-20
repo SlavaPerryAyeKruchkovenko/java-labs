@@ -2,25 +2,38 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args){
         Map<String,String> texts = getTexts(new File("assets"));
+
         //System.out.println("input data");
         //Scanner scanner = new Scanner(System.in);
         //String str = scanner.nextLine();
+
         String str = "Lorem";
         Map<String,Set<Result>> index = getIndex(str);
 
         Map<String, Set<Result>> map = add(index,texts);
-
+        System.out.println(map);
     }
     public static Map<String, Set<Result>> add(Map<String, Set<Result>> index, Map<String, String> texts) {
         index.forEach(
                 (val,res)->texts.forEach(
-                        (name,text) -> Arrays.stream(text.split("\n"))
-                                .filter(x->x.toLowerCase(Locale.ROOT).contains(val))
-                                .forEach(y->res = )
+                        (name,text) -> {
+                            List<String> words = Arrays.stream(text.split("\n")).collect(Collectors.toList());
+                            words.stream()
+                                    .filter(x->x.toLowerCase(Locale.ROOT).contains(val))
+                                    .forEach(
+                                            y -> {
+                                                Result result = new Result(name);
+                                                result.setText(y);
+                                                result.setFileRange(words.indexOf(y),words.indexOf(y));
+                                                res.add(result);
+                                            }
+                                    );
+                        }
                 )
         );
         return index;
