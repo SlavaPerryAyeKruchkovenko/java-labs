@@ -29,4 +29,11 @@ public class Result {
     public void setFileRange(int start,int finish) {
         this.fileRange = new Range(start,finish);
     }
+
+    @Override
+    public String toString() {
+        return "file: " + fileName
+                + " range: " + fileRange.getStart() + " " +fileRange.getFinish()
+                + " text: " + text;
+    }
 }

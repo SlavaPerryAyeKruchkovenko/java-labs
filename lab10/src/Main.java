@@ -8,28 +8,57 @@ public class Main {
     public static void main(String[] args){
         Map<String,String> texts = getTexts(new File("assets"));
 
-        //System.out.println("input data");
-        //Scanner scanner = new Scanner(System.in);
-        //String str = scanner.nextLine();
+        System.out.println("input data");
+        Scanner scanner = new Scanner(System.in);
+        String str = "lorem";
 
-        String str = "Lorem";
-        Map<String,Set<Result>> index = getIndex(str);
+        try{
+            Map<String,Set<Result>> index = getIndex(str);
 
-        Map<String, Set<Result>> map = add(index,texts);
-        System.out.println(map);
+            Map<String, Set<Result>> map = add(index,texts);
+            map.forEach(
+                    (x,y)-> {
+                        System.out.println("\n" + x + "\n");
+                        y.forEach(
+                                System.out::println
+                        );
+                    }
+            );
+        }catch (Exception ex){
+           ex.printStackTrace();
+        }
+
     }
     public static Map<String, Set<Result>> add(Map<String, Set<Result>> index, Map<String, String> texts) {
         index.forEach(
-                (val,res)->texts.forEach(
+                (key,res)->texts.forEach(
                         (name,text) -> {
-                            List<String> words = Arrays.stream(text.split("\n")).collect(Collectors.toList());
-                            words.stream()
-                                    .filter(x->x.toLowerCase(Locale.ROOT).contains(val))
+                            List<String> sentences = Arrays.stream(text.split("\\.")).collect(Collectors.toList());
+                            sentences.stream()
+                                    .filter(x->x.toLowerCase(Locale.ROOT).trim().contains(key))
                                     .forEach(
                                             y -> {
                                                 Result result = new Result(name);
                                                 result.setText(y);
-                                                result.setFileRange(words.indexOf(y),words.indexOf(y));
+
+                                                String[] splitText = text.split("\n");
+                                                List<String> splitY = Arrays.stream(y.split("\r\n"))
+                                                        .filter(val-> !val.trim().equals(""))
+                                                        .map(val-> val.toLowerCase(Locale.ROOT))
+                                                        .collect(Collectors.toList());
+
+                                                int start = Arrays.stream(splitText)
+                                                        .collect(Collectors.toList()).indexOf(
+                                                                Arrays.stream(splitText).filter(
+                                                                        val->val.toLowerCase(Locale.ROOT)
+                                                                                .contains(splitY.stream()
+                                                                                .filter(x -> x.contains(key))
+                                                                                .findFirst().get())
+                                                                ).findFirst()
+                                                                        .get()
+                                                        ) + 1;
+                                                result.setFileRange(
+                                                        start,start+ splitY.size() -1);
                                                 res.add(result);
                                             }
                                     );
