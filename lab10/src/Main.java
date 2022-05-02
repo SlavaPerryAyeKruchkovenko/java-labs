@@ -58,7 +58,7 @@ public class Main {
                                                                         .get()
                                                         ) + 1;
                                                 result.setFileRange(
-                                                        start,start+ splitY.size() -1);
+                                                        start,start + splitY.size() -1);
                                                 res.add(result);
                                             }
                                     );
