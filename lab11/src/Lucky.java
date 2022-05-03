@@ -4,6 +4,7 @@ public class Lucky {
     static int x = 0;
     static int count = 0;
     private static final Object lock = new Object();
+
     static class LuckyThread extends Thread {
         @Override
         public void run() {
